@@ -1,12 +1,13 @@
-import WordPrompt from "../../components/wordPrompt"
-
-
+import WordPrompt from "../../components/wordPrompt";
+import Link from 'next/link'
 const Trainer = () => {
-
-  
-
   return (
-    <WordPrompt />
+    <div>
+      <Link href="/">
+        <a>Home</a>
+      </Link>
+      <WordPrompt />
+    </div>
   );
 };
 
