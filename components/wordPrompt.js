@@ -2,25 +2,19 @@ import React, { useEffect, useState } from "react";
 import "tailwindcss/tailwind.css";
 
 const WordPrompt = () => {
+  useEffect(() => {
+    fetchWords();
+  }, []);
   const changeWordHandler = () => {
     setWords((lastWords) => {
-      if (lastWords.nextWords.length != 0) {
-        return {
-          ...lastWords,
-          currentWord: lastWords.nextWords.shift(),
-        };
-      } else {
-        return {
-          ...lastWords,
-          currentWord: "Out of words!",
-        };
+      if (lastWords.length <= 3) {
+        fetchWords();
       }
+      lastWords.shift();
+      return [...lastWords];
     });
   };
-  const [words, setWords] = useState({
-    currentWord: "Start",
-    nextWords: [],
-  });
+  const [words, setWords] = useState([]);
   const fetchWords = () => {
     fetch("https://random-word-api.herokuapp.com/word?number=10", {
       method: "GET",
@@ -28,21 +22,16 @@ const WordPrompt = () => {
       .then((response) => response.json())
       .then((data) => {
         setWords((lastWords) => {
-          lastWords.nextWords.push(...data);
-          return { ...lastWords };
+          lastWords.push(...data);
+          return [...lastWords];
         });
-      })
-      .catch((error) => {
-        console.log(error);
       });
   };
 
   return (
     <div className="flex flex-col m-10">
-      <p className="text-center text-5xl">{words.currentWord}</p>
-      <p className="text-center text-3xl">
-        Words left: {words.nextWords.length}{" "}
-      </p>
+      <p className="text-center text-5xl">{words[0]}</p>
+      <p className="text-center text-3xl">Words left: {words.length}</p>
       <button
         onClick={changeWordHandler}
         className="text-center border-5 border-black-600 border-solid"
