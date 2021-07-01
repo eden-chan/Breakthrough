@@ -6,11 +6,11 @@ const WordPrompt = () => {
     fetchWords();
   }, []);
   const changeWordHandler = () => {
+    if (words.length <= 3) {
+      fetchWords();
+    }
     setWords((lastWords) => {
-      if (lastWords.length <= 3) {
-        fetchWords();
-      }
-      lastWords.shift();
+      lastWords.shift()
       return [...lastWords];
     });
   };
@@ -22,8 +22,7 @@ const WordPrompt = () => {
       .then((response) => response.json())
       .then((data) => {
         setWords((lastWords) => {
-          lastWords.push(...data);
-          return [...lastWords];
+          return [...lastWords, ...data];
         });
       });
   };
