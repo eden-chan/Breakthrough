@@ -14,7 +14,7 @@ export default function RadioCard(props) {
                cursor="pointer"
                boxShadow="md"
                _checked={{
-                   bg: "prim_main",
+                   bg: "primary.main",
                    color: "white"
                }}
                px={5}
