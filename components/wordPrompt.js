@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { Box, Center, Progress } from "@chakra-ui/react";
 import "tailwindcss/tailwind.css";
 
 const WordPrompt = () => {
   useEffect(() => {
+    const interval = setInterval(tickTimer, 70);
     fetchWords();
+    // Clear service worker to prevent underflow
+    return () => clearInterval(interval);
   }, []);
   const changeWordHandler = () => {
-    if (words.length <= 3) {
-      fetchWords();
-    }
+    
     setWords((lastWords) => {
-      lastWords.shift()
+      if (lastWords.length <= 3) {
+        fetchWords();
+      }
+      lastWords.shift();
       return [...lastWords];
     });
   };
@@ -27,18 +32,33 @@ const WordPrompt = () => {
       });
   };
 
+  const [timer, setTimer] = useState(100);
+
+  const tickTimer = () => {
+    setTimer((lastTime) => {
+      if (lastTime <= 0) {
+        changeWordHandler();
+        return 100;
+      } 
+      return lastTime - 1;
+    });
+  };
+
   return (
-    <div className="flex flex-col m-10">
-      <p className="text-center text-5xl">{words[0]}</p>
-      <p className="text-center text-3xl">Words left: {words.length}</p>
-      <button
-        onClick={changeWordHandler}
-        className="text-center border-5 border-black-600 border-solid"
-      >
-        Change Word
-      </button>
-      <button onClick={fetchWords}>Fetch Words</button>
-    </div>
+    <Center>
+      <Box className="flex flex-col m-10" w="350px">
+        <p className="text-center text-5xl">{words[0]}</p>
+        <Progress value={timer} w="%100" size="xs" colorScheme="yellow" />
+        <p className="text-center text-3xl">Words left: {words.length}</p>
+        <button
+          onClick={changeWordHandler}
+          className="text-center border-5 border-black-600 border-solid"
+        >
+          Change Word
+        </button>
+        <button onClick={fetchWords}>Fetch Words</button>
+      </Box>
+    </Center>
   );
 };
 
