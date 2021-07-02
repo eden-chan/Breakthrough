@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/RadioCard.js", "pages/trainer/index.js", "components/wordPrompt.js", "components/preRap.js", "pages/theme.js", "pages/index.js", "pages/_app.js"  ],
   "exclude": [
     "node_modules"
   ]

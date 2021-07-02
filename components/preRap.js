@@ -1,18 +1,31 @@
-import { useState } from 'react';
-import { Radio, RadioGroup} from '@chakra-ui/radio';
-import { Stack } from '@chakra-ui/react';
+import { useState } from "react";
+import { HStack, Center } from "@chakra-ui/react";
+import { useRadioGroup } from "@chakra-ui/radio";
+import RadioCard from "./RadioCard";
 
 const PreRap = () => {
-    const [difficulty, setDifficulty] = useState("easy");
-    return (
-        <RadioGroup onChange={setDifficulty} value={difficulty}>
-            <Stack direction="row">
-                <Radio value="easy">Easy</Radio>
-                <Radio value="medium">Medium</Radio>
-                <Radio value="hard">Hard</Radio>
-            </Stack>
-        </RadioGroup>
-    )
-}
+  const [difficulty, setDifficulty] = useState("easy");
+  const difficulties = ["easy", "medium", "hard"];
+  const { getRootProps, getRadioProps } = useRadioGroup({
+    name: "difficulty",
+    defaultValue: "easy",
+    onChange: console.log,
+  });
+  const group = getRootProps();
+  return (
+    <Center>
+      <HStack {...group}>
+        {difficulties.map((value) => {
+          const radio = getRadioProps({ value });
+          return (
+            <RadioCard key={value} {...radio}>
+              {value}
+            </RadioCard>
+          );
+        })}
+      </HStack>
+    </Center>
+  );
+};
 
 export default PreRap;
