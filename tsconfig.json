@@ -14,17 +14,6 @@
     "isolatedModules": true,
     "jsx": "preserve"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "components/RadioCard.js",
-    "pages/trainer/index.js",
-    "components/wordPrompt.js",
-    "components/preRap.js",
-    "pages/theme.js",
-    "pages/index.js",
-    "pages/_app.js"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
   "exclude": ["node_modules"]
 }
