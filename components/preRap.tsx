@@ -9,7 +9,7 @@ const PreRap = () => {
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "difficulty",
     defaultValue: "easy",
-    onChange: console.log,
+    onChange: setDifficulty
   });
   const group = getRootProps();
   return (
@@ -24,6 +24,7 @@ const PreRap = () => {
           );
         })}
       </HStack>
+      <p>{difficulty}</p>
     </Center>
   );
 };
