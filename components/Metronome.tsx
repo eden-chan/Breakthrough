@@ -3,34 +3,36 @@ import { Button } from "@chakra-ui/react";
 import useSound from "use-sound";
 import click from "./click2.mp3";
 
-export default function Metronome() {
+export default function Metronome(props) {
+  const [settings, setSettings] = useState({
+    tempo: 160,
+    interval: -1,
+  });
+  const [playing, setPlaying] = useState(false);
   useEffect(() => {
     return () => {
       clearInterval(settings.interval);
     };
-  }, []);
-  const [settings, setSettings] = useState({
-    playing: false,
-    tempo: 160,
-    interval: null,
-  });
-  const startStop = () => {
-    if (!settings.playing) {
-      setSettings((settings) => {
-        return { ...settings, interval: setInterval(play, 1000) };
+  }, [settings.interval]);
+  
+  const startStop = async () => {
+    if (!playing) {
+      let serviceidx = setInterval(play, 1000);
+      setSettings((prevSettings) => {
+        return { ...prevSettings, interval: serviceidx };
       });
     } else {
       clearInterval(settings.interval);
     }
-    setSettings((prevSettings) => {
-      return { ...prevSettings, playing: !prevSettings.playing };
-    });
+    setPlaying((isPlaying) => !isPlaying);
+    
   };
   const [play] = useSound(click);
 
   return (
     <div>
       <Button onClick={startStop}>{settings.playing ? "Stop" : "Start"}</Button>
+      <p>{settings.interval}</p>
     </div>
   );
 }

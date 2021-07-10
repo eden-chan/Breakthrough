@@ -16,8 +16,7 @@ const Trainer = () => {
       <button onClick={startStopHandler} className="text-center text-2xl">
         {startSession ? "Stop" : "Start"}
       </button>
-      {!startSession && <PreRap />}
-      {startSession && <WordPrompt />}
+      {startSession? <WordPrompt />: <PreRap />}
     </div>
   );
 };

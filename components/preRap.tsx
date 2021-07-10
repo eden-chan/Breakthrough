@@ -24,7 +24,6 @@ const PreRap = () => {
           );
         })}
       </HStack>
-      <p>{difficulty}</p>
     </Center>
   );
 };
