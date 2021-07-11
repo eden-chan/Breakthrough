@@ -14,8 +14,8 @@ import click from "./click2.mp3";
 export default function Metronome(props) {
   const [settings, setSettings] = useState({
     isPlaying: false,
-    tempo: props.tempo? props.tempo: 160,
-    beatsPerMeasure: props.beatsPerMeasure? props.beatsPerMeausre: 4,
+    tempo: props.tempo ? props.tempo : 160,
+    beatsPerMeasure: props.beatsPerMeasure ? props.beatsPerMeausre : 4,
     beat: 1,
     interval: -1,
   });
@@ -27,21 +27,17 @@ export default function Metronome(props) {
   }, [settings.interval]);
 
   const startStop = async () => {
-    if (!settings.isPlaying) {
-      const frequency = 60000 / settings.tempo;
-      setSettings((prevSettings) => {
-        return {
-          ...prevSettings,
-          isPlaying: !prevSettings.isPlaying,
-          interval: setInterval(tick, frequency),
-        };
-      });
-    } else {
+    if (settings.isPlaying) {
       clearInterval(settings.interval);
-      setSettings((prevSettings) => {
-        return { ...prevSettings, isPlaying: !prevSettings.isPlaying };
-      });
     }
+    setSettings((prevSettings) => {
+      const frequency = 60000 / settings.tempo;
+      return {
+        ...prevSettings,
+        isPlaying: !prevSettings.isPlaying,
+        interval: prevSettings.isPlaying ? -1 : setInterval(tick, frequency),
+      };
+    });
   };
   const [playClick] = useSound(click);
   const [playFirstClick] = useSound(firstClick);
