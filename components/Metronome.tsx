@@ -72,7 +72,7 @@ export default function Metronome(props) {
         {settings.isPlaying ? "Stop" : "Start"}
       </Button>
       <Slider
-        defaultValue={60}
+        defaultValue={settings.tempo}
         min={10}
         max={300}
         step={1}
