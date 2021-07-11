@@ -1,38 +1,95 @@
 import { useState, useEffect } from "react";
-import { Button } from "@chakra-ui/react";
+import {
+  Button,
+  Box,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+} from "@chakra-ui/react";
 import useSound from "use-sound";
+import firstClick from "./click1.mp3";
 import click from "./click2.mp3";
 
 export default function Metronome(props) {
   const [settings, setSettings] = useState({
-    tempo: 160,
+    isPlaying: false,
+    tempo: props.tempo? props.tempo: 160,
+    beatsPerMeasure: props.beatsPerMeasure? props.beatsPerMeausre: 4,
+    beat: 1,
     interval: -1,
   });
-  const [playing, setPlaying] = useState(false);
   useEffect(() => {
+    // Cleanup Service Worker on Component Dismount
     return () => {
       clearInterval(settings.interval);
     };
   }, [settings.interval]);
-  
+
   const startStop = async () => {
-    if (!playing) {
-      let serviceidx = setInterval(play, 1000);
+    if (!settings.isPlaying) {
+      const frequency = 60000 / settings.tempo;
       setSettings((prevSettings) => {
-        return { ...prevSettings, interval: serviceidx };
+        return {
+          ...prevSettings,
+          isPlaying: !prevSettings.isPlaying,
+          interval: setInterval(tick, frequency),
+        };
       });
     } else {
       clearInterval(settings.interval);
+      setSettings((prevSettings) => {
+        return { ...prevSettings, isPlaying: !prevSettings.isPlaying };
+      });
     }
-    setPlaying((isPlaying) => !isPlaying);
-    
   };
-  const [play] = useSound(click);
+  const [playClick] = useSound(click);
+  const [playFirstClick] = useSound(firstClick);
 
+  const tick = () => {
+    setSettings((prevSettings) => {
+      if (prevSettings.beat == 1) {
+        playFirstClick();
+      } else {
+        playClick();
+      }
+      return {
+        ...prevSettings,
+        beat: (prevSettings.beat % prevSettings.beatsPerMeasure) + 1,
+      };
+    });
+  };
+  const changeTempo = (bpm) => {
+    clearInterval(settings.interval);
+    const frequency = 60000 / bpm;
+    setSettings((prevSettings) => {
+      return {
+        ...prevSettings,
+        interval: prevSettings.isPlaying ? setInterval(tick, frequency) : -1,
+        tempo: bpm,
+      };
+    });
+  };
   return (
-    <div>
-      <Button onClick={startStop}>{settings.playing ? "Stop" : "Start"}</Button>
-      <p>{settings.interval}</p>
-    </div>
+    <Box>
+      <Button onClick={startStop}>
+        {settings.isPlaying ? "Stop" : "Start"}
+      </Button>
+      <Slider
+        defaultValue={60}
+        min={10}
+        max={300}
+        step={1}
+        onChangeEnd={(value) => {
+          changeTempo(value);
+        }}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+      <p>Tempo: {settings.tempo}bpm</p>
+    </Box>
   );
 }

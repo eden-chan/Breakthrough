@@ -60,7 +60,7 @@ const WordPrompt = () => {
           Change Word
         </button>
         <button onClick={fetchWords}>Fetch Words</button>
-        <Metronome />
+        <Metronome tempo={160}/>
       </Flex>
     </Center>
   );
