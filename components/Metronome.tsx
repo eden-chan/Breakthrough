@@ -15,7 +15,7 @@ export default function Metronome(props) {
   const [settings, setSettings] = useState({
     isPlaying: false,
     tempo: props.tempo ? props.tempo : 160,
-    beatsPerMeasure: props.beatsPerMeasure ? props.beatsPerMeausre : 4,
+    beatsPerMeasure: props.beatsPerMeasure ? props.beatsPerMeasure : 4,
     beat: 1,
     interval: -1,
   });
