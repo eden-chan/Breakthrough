@@ -9,7 +9,7 @@ import {
   Stack,
   VStack,
   Heading,
-  Text, Flex,
+  Text, Flex, Spacer, useColorModeValue
 } from "@chakra-ui/react";
 import { ArrowForwardIcon } from '@chakra-ui/icons'
 
@@ -22,36 +22,42 @@ import rapper from '../public/rapper.svg';
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode();
 
+  const bg = useColorModeValue("primary.main", "primary.dark")
   return (
-    <Grid templateColumns="repeat(2, 1fr)">
-      <GridItem colSpan={2}>
-        {/* Nav Bar */}
-        <Box w="100%" h='20vh' />
-      </GridItem>
-      <GridItem>
-        {/* Main Section */}
-        <Box h='60vh'>
-          <Box>
-            <Heading as="h1" >
-              Find your Voice
-            </Heading>
-          </Box>
-          <Box>
-            <Text fontSize="lg"> | About </Text>
-            <Text fontSize="md"> Breakthrough empowers individuals to become more articulate through freestyle rap  </Text>
-          </Box>
-          <Link href="/trainer" passHref>
-            <Button colorScheme='yellow'>Start Session <ArrowForwardIcon /></Button>
-          </Link>
-        </Box>
-      </GridItem>
-      <GridItem>
-        <Image src={rapper} alt="Singer" />
-      </GridItem>
-      <GridItem colSpan={2}>
-        {/* Footer */}
-        <Box h='20vh'></Box>
-      </GridItem>
-    </Grid>
+    // Body
+    <Box bg={bg}>
+      <Grid templateColumns="repeat(2, 1fr)">
+        <GridItem colSpan={2}>
+          {/* Nav Bar */}
+          <Box w="100%" h='20vh' />
+        </GridItem>
+        <GridItem colSpan={1}>
+          {/* Main Section */}
+          <Flex direction='column' h='60vh' w='100%' px='5rem'>
+            <Box py='2rem'>
+              <Heading as="h1" size="4xl" >
+                Find your Voice
+              </Heading>
+            </Box>
+            <Box pb='2rem'>
+              <Text fontSize="lg"> | About </Text>
+              <Text fontSize="md"> Breakthrough empowers individuals to become more articulate by developing their ability to freestyle rap  </Text>
+            </Box>
+            <Box>
+              <Link href="/trainer" passHref>
+                <Box as='button' borderRadius="md" bg="#FEBE02" color="#1A1A1A" h='100%'><Text fontSize='6xl'>Start A Session <ArrowForwardIcon /></Text> </Box>
+              </Link>
+            </Box>
+          </Flex>
+        </GridItem>
+        <GridItem colSpan={1}>
+          <Image src={rapper} alt="Singer" />
+        </GridItem>
+        <GridItem colSpan={2}>
+          {/* Footer */}
+          <Box h='20vh'></Box>
+        </GridItem>
+      </Grid>
+    </Box>
   );
 }
