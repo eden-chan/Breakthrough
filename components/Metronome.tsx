@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import {
   Button,
   Box,
@@ -6,10 +6,10 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
-} from "@chakra-ui/react";
-import useSound from "use-sound";
-import firstClick from "./click1.mp3";
-import click from "./click2.mp3";
+} from '@chakra-ui/react';
+import useSound from 'use-sound';
+import firstClick from './click1.mp3';
+import click from './click2.mp3';
 
 export default function Metronome(props) {
   const [settings, setSettings] = useState({
@@ -35,7 +35,9 @@ export default function Metronome(props) {
       return {
         ...prevSettings,
         isPlaying: !prevSettings.isPlaying,
-        interval: prevSettings.isPlaying ? -1 : setInterval(tick, frequency),
+        interval: prevSettings.isPlaying
+          ? -1
+          : window.setInterval(tick, frequency),
       };
     });
   };
@@ -61,7 +63,9 @@ export default function Metronome(props) {
     setSettings((prevSettings) => {
       return {
         ...prevSettings,
-        interval: prevSettings.isPlaying ? setInterval(tick, frequency) : -1,
+        interval: prevSettings.isPlaying
+          ? window.setInterval(tick, frequency)
+          : -1,
         tempo: bpm,
       };
     });
@@ -69,7 +73,7 @@ export default function Metronome(props) {
   return (
     <Box>
       <Button onClick={startStop}>
-        {settings.isPlaying ? "Stop" : "Start"}
+        {settings.isPlaying ? 'Stop' : 'Start'}
       </Button>
       <Slider
         defaultValue={settings.tempo}
