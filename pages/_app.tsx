@@ -1,5 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import theme from './theme'
+import theme from '../theme'
 import 'tailwindcss/tailwind.css'
 
 // Chakra-UI Global Extending Theme Colours
@@ -11,8 +11,8 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
     </ChakraProvider>
   )
-  
-  
+
+
 }
 
 export default MyApp
