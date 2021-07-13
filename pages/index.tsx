@@ -22,14 +22,16 @@ import rapper from '../public/rapper.svg';
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode();
 
-  const bg = useColorModeValue("primary.main", "primary.dark")
+  const bg = useColorModeValue("white", "primary.dark")
   return (
     // Body
     <Box bg={bg}>
       <Grid templateColumns="repeat(2, 1fr)">
         <GridItem colSpan={2}>
           {/* Nav Bar */}
-          <Box w="100%" h='20vh' />
+          <Box w="100%" h='20vh' >
+            <Button onClick={toggleColorMode}>   Toggle {colorMode === "light" ? "Dark" : "Light"}</Button>
+          </Box>
         </GridItem>
         <GridItem colSpan={1}>
           {/* Main Section */}
