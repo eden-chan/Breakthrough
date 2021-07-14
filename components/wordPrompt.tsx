@@ -68,12 +68,12 @@ const WordPrompt = () => {
         <button onClick={fetchWords}>Fetch Words</button>
         
         <HStack spacing={100} alignItems="center">
-          <Image boxSize="50px" objectFit="scale-down" align={['30%', '50%']} src="menu.png" />
-          <Image boxSize="80px" objectFit="scale-down" align={['center', 'center']} src="pause.png" />        
+          <Image boxSize="50px" objectFit="scale-down" align={['30%', '50%']} src="/menu.png" />
+          <Image boxSize="80px" objectFit="scale-down" align={['center', 'center']} src="/pause.png" />        
         </HStack>
         
         <Flex>
-          <Image boxSize="20px" objectFit="scale-down" src="volume_down.png"/>
+          <Image boxSize="20px" objectFit="scale-down" src="/volume_down.png"/>
           <Spacer />
           <Slider aria-label="volume" colorScheme="yellow" defaultValue={50}>
             <SliderTrack>
@@ -81,7 +81,7 @@ const WordPrompt = () => {
             </SliderTrack>
              <SliderThumb />
           </Slider>
-          <Image boxSize="20px" objectFit="scale-down" src="volume_down.png"/>
+          <Image boxSize="20px" objectFit="scale-down" src="/volume_down.png"/>
          </Flex>
 
       </Box>
