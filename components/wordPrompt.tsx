@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Box, Center, Progress } from "@chakra-ui/react";
+import { Box, Center, Progress, useColorModeValue, extendTheme,
+         Slider,SliderTrack, SliderFilledTrack, SliderThumb, Flex, Spacer, Image, Menu, HStack} from "@chakra-ui/react";
 import "tailwindcss/tailwind.css";
 
 const WordPrompt = () => {
@@ -44,10 +45,18 @@ const WordPrompt = () => {
     });
   };
 
+  const wordBox = useColorModeValue("#5000CA","#C4C4C4")
+  const prompt = useColorModeValue("#C4C4C4e","#5000CA")
+
   return (
     <Center>
-      <Box className="flex flex-col m-10" w="350px">
-        <p className="text-center text-5xl">{words[0]}</p>
+      <Box className="flex flex-col m-10" mt="50px" w="50%" >
+        <Box p="20px" h="200px" bg={wordBox}>
+          <Box p="20px"> </Box>
+          <Box className="text-center text-6xl" color={prompt} >{words[0]} </Box>
+        </Box>
+        <Box p="15px">
+        </Box>
         <Progress value={timer} w="%100" size="xs" colorScheme="yellow" />
         <p className="text-center text-3xl">Words left: {words.length}</p>
         <button
@@ -57,9 +66,31 @@ const WordPrompt = () => {
           Change Word
         </button>
         <button onClick={fetchWords}>Fetch Words</button>
+        
+        <HStack spacing={100} alignItems="center">
+          <Image boxSize="50px" objectFit="scale-down" align={['30%', '50%']} src="menu.png" />
+          <Image boxSize="80px" objectFit="scale-down" align={['center', 'center']} src="pause.png" />        
+        </HStack>
+        
+        <Flex>
+          <Image boxSize="20px" objectFit="scale-down" src="volume_down.png"/>
+          <Spacer />
+          <Slider aria-label="volume" colorScheme="yellow" defaultValue={50}>
+            <SliderTrack>
+              <SliderFilledTrack />
+            </SliderTrack>
+             <SliderThumb />
+          </Slider>
+          <Image boxSize="20px" objectFit="scale-down" src="volume_down.png"/>
+         </Flex>
+
       </Box>
     </Center>
+    
   );
+
+
+
 };
 
 export default WordPrompt;
