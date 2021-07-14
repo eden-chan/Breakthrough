@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Center, Flex, Progress } from "@chakra-ui/react";
-import Metronome from "./Metronome";
+import React, { useEffect, useState } from 'react';
+import { Center, Flex, Progress } from '@chakra-ui/react';
+import Metronome from './Metronome';
+import ExternalPlayer from './ExternalPlayer';
 
-import "tailwindcss/tailwind.css";
+import 'tailwindcss/tailwind.css';
 
 const WordPrompt = () => {
   useEffect(() => {
-    
-    const interval = setInterval(tickTimer, 70);
+    const interval = setInterval(tickTimer, 500);
     fetchWords();
     // Clear service worker to prevent underflow
     return () => clearInterval(interval);
@@ -24,8 +24,8 @@ const WordPrompt = () => {
   };
   const [words, setWords] = useState([]);
   const fetchWords = () => {
-    fetch("https://random-word-api.herokuapp.com/word?number=10", {
-      method: "GET"
+    fetch('https://random-word-api.herokuapp.com/word?number=10', {
+      method: 'GET',
     })
       .then((response) => response.json())
       .then((data) => {
@@ -42,8 +42,8 @@ const WordPrompt = () => {
       if (lastTime <= 0) {
         changeWordHandler();
         return 100;
-      } 
-      return lastTime - 1;
+      }
+      return lastTime - 10;
     });
   };
 
@@ -60,7 +60,7 @@ const WordPrompt = () => {
           Change Word
         </button>
         <button onClick={fetchWords}>Fetch Words</button>
-        <Metronome tempo={160}/>
+        <Metronome tempo="160" />
       </Flex>
     </Center>
   );

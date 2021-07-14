@@ -8,8 +8,6 @@ import {
   SliderThumb,
 } from '@chakra-ui/react';
 import useSound from 'use-sound';
-import firstClick from './click1.mp3';
-import click from './click2.mp3';
 
 export default function Metronome(props) {
   const [settings, setSettings] = useState({
@@ -17,6 +15,7 @@ export default function Metronome(props) {
     tempo: props.tempo ? props.tempo : 160,
     beatsPerMeasure: props.beatsPerMeasure ? props.beatsPerMeasure : 4,
     beat: 1,
+    volume: 0.5,
     interval: -1,
   });
   useEffect(() => {
@@ -41,8 +40,12 @@ export default function Metronome(props) {
       };
     });
   };
-  const [playClick] = useSound(click);
-  const [playFirstClick] = useSound(firstClick);
+  const [playClick] = useSound('/audio/click2.mp3', {
+    volume: settings.volume,
+  });
+  const [playFirstClick] = useSound('/audio/click1.mp3', {
+    volume: settings.volume,
+  });
 
   const tick = () => {
     setSettings((prevSettings) => {
@@ -70,17 +73,35 @@ export default function Metronome(props) {
       };
     });
   };
+
   return (
     <Box>
       <Button onClick={startStop}>
         {settings.isPlaying ? 'Stop' : 'Start'}
       </Button>
       <Slider
+        defaultValue={settings.volume}
+        min={0}
+        max={1}
+        step={0.1}
+        onChange={(value) => {
+          setSettings((prevSettings) => {
+            return { ...prevSettings, volume: value };
+          });
+        }}
+      >
+        <SliderTrack>
+          <SliderFilledTrack />
+        </SliderTrack>
+        <SliderThumb />
+      </Slider>
+      <p>Volume: {settings.volume}</p>
+      <Slider
         defaultValue={settings.tempo}
-        min={10}
+        min={30}
         max={300}
         step={1}
-        onChangeEnd={(value) => {
+        onChange={(value) => {
           changeTempo(value);
         }}
       >
