@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Center, Flex, Progress } from '@chakra-ui/react';
 import Metronome from './Metronome';
-import ExternalPlayer from './ExternalPlayer';
-
 import 'tailwindcss/tailwind.css';
 
 const WordPrompt = () => {

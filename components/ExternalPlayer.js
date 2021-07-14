@@ -11,8 +11,7 @@ export default function ExternalPlayer() {
   return (
     <Box key="external_player">
       <Input
-        placeholder="Bob"
-        key="external_audio_input"
+        placeholder="Youtube/Soundcloud URL"
         onChange={(e) => setUrl(e.target.value)}
       ></Input>
       <ReactPlayer url={url} playing={true} />

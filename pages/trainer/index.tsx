@@ -22,7 +22,7 @@ const Trainer = () => {
       {startSession ? (
         <Box key="wordPrompt_container">
           <WordPrompt />
-          <ExternalPlayer key="external_audio" />
+          <ExternalPlayer />
         </Box>
       ) : (
         <PreRap />
