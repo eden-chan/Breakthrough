@@ -1,8 +1,10 @@
-import { useState } from "react";
-import WordPrompt from "../../components/wordPrompt";
-import PreRap from "../../components/preRap";
-import Link from "next/link";
-import "tailwindcss/tailwind.css";
+import { useState } from 'react';
+import WordPrompt from '../../components/wordPrompt';
+import PreRap from '../../components/preRap';
+import Link from 'next/link';
+import { Box } from '@chakra-ui/react';
+import ExternalPlayer from '../../components/ExternalPlayer';
+import 'tailwindcss/tailwind.css';
 const Trainer = () => {
   const [startSession, setStartSession] = useState(false);
   const startStopHandler = () => {
@@ -14,10 +16,17 @@ const Trainer = () => {
         <a>Home</a>
       </Link>
       <button onClick={startStopHandler} className="text-center text-2xl">
-        {startSession ? "Stop" : "Start"}
+        {startSession ? 'Stop' : 'Start'}
       </button>
-      {!startSession && <PreRap />}
-      {startSession && <WordPrompt />}
+
+      {startSession ? (
+        <Box key="wordPrompt_container">
+          <WordPrompt />
+          <ExternalPlayer />
+        </Box>
+      ) : (
+        <PreRap />
+      )}
     </div>
   );
 };
