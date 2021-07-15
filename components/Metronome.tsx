@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   Box,
@@ -9,6 +9,9 @@ import {
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
+  Collapse,
+  useDisclosure,
+  Text,
 } from '@chakra-ui/react';
 
 import {
@@ -84,6 +87,7 @@ export default function Metronome(props) {
       };
     });
   };
+  const { isOpen, onToggle } = useDisclosure();
 
   return (
     <Box>
@@ -148,13 +152,19 @@ export default function Metronome(props) {
         onChange={(value) => {
           changeTempo(value);
         }}
+        onChangeStart={onToggle}
+        onChangeEnd={onToggle}
       >
         <SliderTrack>
           <SliderFilledTrack />
         </SliderTrack>
         <SliderThumb />
       </Slider>
-      <p>Tempo: {settings.tempo}bpm</p>
+      <Collapse in={isOpen}>
+        <Text align="center" size="64px" decoration="bold">
+          {settings.tempo}bpm
+        </Text>
+      </Collapse>
     </Box>
   );
 }
