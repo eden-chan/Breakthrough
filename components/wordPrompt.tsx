@@ -4,6 +4,9 @@ import Metronome from './Metronome';
 import 'tailwindcss/tailwind.css';
 
 const WordPrompt = () => {
+  const [words, setWords] = useState([]);
+  const [timer, setTimer] = useState(100);
+
   useEffect(() => {
     const interval = setInterval(tickTimer, 500);
     fetchWords();
@@ -20,7 +23,7 @@ const WordPrompt = () => {
       return [...lastWords];
     });
   };
-  const [words, setWords] = useState([]);
+
   const fetchWords = () => {
     fetch('https://random-word-api.herokuapp.com/word?number=10', {
       method: 'GET',
@@ -30,10 +33,9 @@ const WordPrompt = () => {
         setWords((lastWords) => {
           return [...lastWords, ...data];
         });
-      });
+      })
+      .catch((err) => console.log(err));
   };
-
-  const [timer, setTimer] = useState(100);
 
   const tickTimer = () => {
     setTimer((lastTime) => {
