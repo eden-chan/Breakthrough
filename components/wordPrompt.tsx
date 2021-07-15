@@ -63,7 +63,7 @@ const WordPrompt = () => {
           </Box>
         </Box>
         <Box p="15px"></Box>
-        <Progress value={timer} w="%100" size="xs" colorScheme="yellow" />
+        <Progress value={timer} w="100%" size="xs" colorScheme="yellow" />
         <button
           onClick={changeWordHandler}
           className="text-center border-5 border-black-600 border-solid"
