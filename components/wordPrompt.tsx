@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
   Box,
+  Button,
   Center,
   Flex,
   Progress,
   useColorModeValue,
+  Text,
 } from '@chakra-ui/react';
 import Metronome from './Metronome';
 import 'tailwindcss/tailwind.css';
@@ -51,26 +53,24 @@ const WordPrompt = () => {
 
   const [timer, setTimer] = useState(100);
   const wordBox = useColorModeValue('#5000CA', '#C4C4C4');
-  const prompt = useColorModeValue('#C4C4C4e', '#5000CA');
+  const prompt = useColorModeValue('#ffffff', '#5000CA');
 
   return (
     <Center>
       <Flex direction="column" w="100%">
-        <Box p="20px" h="200px" bg={wordBox}>
+        <Box p="20px" h="200px" borderRadius="12px" bg={wordBox}>
           <Box p="20px"> </Box>
-          <Box className="text-center text-6xl" color={prompt}>
-            {words[0]}{' '}
+          <Box>
+            <Text color={prompt} align="center" fontSize="6xl">
+              {words[0]}
+            </Text>
           </Box>
         </Box>
         <Box p="15px"></Box>
         <Progress value={timer} w="100%" size="xs" colorScheme="yellow" />
-        <button
-          onClick={changeWordHandler}
-          className="text-center border-5 border-black-600 border-solid"
-        >
-          Change Word
-        </button>
+
         <Metronome tempo="160" />
+        <Button onClick={changeWordHandler}>Change Word</Button>
       </Flex>
     </Center>
   );
