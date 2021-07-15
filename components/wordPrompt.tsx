@@ -108,15 +108,15 @@ const WordPrompt = () => {
         </HStack>
 
         <Flex>
-          <VolumeDownIcon />
+          <VolumeDownIcon boxSize="40px"/>
           <Spacer />
-          <Slider aria-label="volume" colorScheme="yellow" defaultValue={50}>
+          <Slider  aria-label="volume" colorScheme="yellow" defaultValue={50}>
             <SliderTrack>
               <SliderFilledTrack />
             </SliderTrack>
             <SliderThumb />
           </Slider>
-          <VolumeUpIcon/>
+          <VolumeUpIcon boxSize="40px"/>
         </Flex>
       </Box>
     </Center>
