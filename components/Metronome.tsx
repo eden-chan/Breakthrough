@@ -2,11 +2,22 @@ import { useState, useEffect } from 'react';
 import {
   Button,
   Box,
+  Flex,
+  HStack,
+  IconButton,
   Slider,
   SliderTrack,
   SliderFilledTrack,
   SliderThumb,
 } from '@chakra-ui/react';
+
+import {
+  MenuIcon,
+  PlayIcon,
+  PauseIcon,
+  VolumeDownIcon,
+  VolumeUpIcon,
+} from './icons';
 import useSound from 'use-sound';
 
 export default function Metronome(props) {
@@ -76,26 +87,59 @@ export default function Metronome(props) {
 
   return (
     <Box>
-      <Button onClick={startStop}>
-        {settings.isPlaying ? 'Stop' : 'Start'}
-      </Button>
-      <Slider
-        defaultValue={settings.volume}
-        min={0}
-        max={1}
-        step={0.1}
-        onChange={(value) => {
-          setSettings((prevSettings) => {
-            return { ...prevSettings, volume: value };
-          });
-        }}
+      <HStack
+        width="calc(50% + 40px)"
+        alignItems="center"
+        justifyItems="space-between"
+        spacing="true"
       >
-        <SliderTrack>
-          <SliderFilledTrack />
-        </SliderTrack>
-        <SliderThumb />
-      </Slider>
-      <p>Volume: {settings.volume}</p>
+        <IconButton
+          aria-label="Menu"
+          w="50px"
+          h="50px"
+          objectFit="scale-down"
+          isRound={true}
+          icon={<MenuIcon w="100%" h="100%" />}
+        />
+        <IconButton
+          onClick={startStop}
+          aria-label="Start and Pause"
+          m="auto"
+          boxSize="80px"
+          objectFit="scale-down"
+          justifySelf="center"
+          isRound={true}
+          icon={
+            settings.isPlaying ? (
+              <PauseIcon w="100%" h="100%" />
+            ) : (
+              <PlayIcon w="100%" h="100%" />
+            )
+          }
+        />
+      </HStack>
+      <Flex>
+        <VolumeDownIcon boxSize="40px" />
+        <Slider
+          defaultValue={settings.volume}
+          colorScheme="yellow"
+          min={0}
+          max={1}
+          step={0.1}
+          onChange={(value) => {
+            setSettings((prevSettings) => {
+              return { ...prevSettings, volume: value };
+            });
+          }}
+        >
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+
+        <VolumeUpIcon boxSize="40px" />
+      </Flex>
       <Slider
         defaultValue={settings.tempo}
         min={30}
