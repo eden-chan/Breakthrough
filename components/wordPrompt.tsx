@@ -12,6 +12,14 @@ import Metronome from './Metronome';
 import 'tailwindcss/tailwind.css';
 
 const WordPrompt = () => {
+  useEffect(() => {
+    let interval = -1;
+    fetchWords().then(() => {
+      interval = window.setInterval(tickTimer, 500);
+    })
+    // Clear service worker to prevent underflow
+    return () => clearInterval(interval);
+  }, []);
   const tickTimer = () => {
     setTimer((lastTime) => {
       if (lastTime <= 0) {
@@ -50,15 +58,6 @@ const WordPrompt = () => {
     });
     return words.length >= 0;
   };
-
-  useEffect(() => {
-    let interval = -1;
-    fetchWords().then(() => {
-      interval = setInterval(tickTimer, 500);
-    })
-    // Clear service worker to prevent underflow
-    return () => clearInterval(interval);
-  }, []);
 
   const [timer, setTimer] = useState(100);
   const wordBox = useColorModeValue('#5000CA', '#C4C4C4');
