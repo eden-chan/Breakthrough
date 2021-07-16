@@ -1,4 +1,5 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider } from '@chakra-ui/react';
+import Page from '../components/Page'
 import theme from '../theme'
 import 'tailwindcss/tailwind.css'
 
@@ -6,9 +7,14 @@ import 'tailwindcss/tailwind.css'
 
 
 function MyApp({ Component, pageProps }) {
+  
   return (
     <ChakraProvider theme={theme}>
+      <Page />
+
+      
       <Component {...pageProps} />
+  
     </ChakraProvider>
   )
 
