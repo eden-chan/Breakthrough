@@ -31,22 +31,31 @@ const WordPrompt = () => {
       return [...lastWords];
     });
   };
+
+  const shuffle = (array) => {
+    let curIdx = array.length, randomIdx;
+    while(curIdx !== 0) {
+      randomIdx = Math.floor(Math.random() * curIdx);
+      curIdx--;
+      [array[curIdx], array[randomIdx]] = [array[randomIdx], array[curIdx]];
+    }
+    return array;
+  }
   const [words, setWords] = useState([]);
   const fetchWords = async () => {
-    const response = await fetch(
-      'https://random-word-api.herokuapp.com/word?number=20',
-      {
-        method: 'GET',
-      }
-    );
+    const response = await fetch('/words.json');
     const words = await response.json();
     setWords((lastWords) => {
-      return [...lastWords, ...words];
+      return shuffle([...lastWords, ...words]);
     });
+    return words.length >= 0;
   };
 
   useEffect(() => {
-    const interval = setInterval(tickTimer, 500);
+    let interval = -1;
+    fetchWords().then(() => {
+      interval = setInterval(tickTimer, 500);
+    })
     // Clear service worker to prevent underflow
     return () => clearInterval(interval);
   }, []);
