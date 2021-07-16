@@ -21,9 +21,9 @@ import singer from '../public/singer.svg';
 import rapper from '../public/rapper.svg';
 
 export default function Home() {
-  const { colorMode, toggleColorMode } = useColorMode();
-
   const bg = useColorModeValue('white', 'primary.dark');
+  const { colorMode, toggleColorMode } = useColorMode();
+  
   return (
     // Body
     <Box bg={bg}>

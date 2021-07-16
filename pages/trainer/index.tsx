@@ -18,6 +18,7 @@ import {
   ModalCloseButton,
   Text,
   useDisclosure,
+  useColorModeValue
 } from '@chakra-ui/react';
 import moment from 'moment';
 
@@ -54,7 +55,7 @@ const Trainer = () => {
         {startSession ? (
           <Box key="wordPrompt_container">
             <Stack spacing={8}>
-              <WordPrompt />
+              <WordPrompt difficulty={difficulty}/>
               <Button
                 colorScheme="purple"
                 onClick={handleEndSession}
