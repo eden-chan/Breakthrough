@@ -10,11 +10,9 @@ function MyApp({ Component, pageProps }) {
   
   return (
     <ChakraProvider theme={theme}>
-      <Page />
-
-      
+      <Page>
       <Component {...pageProps} />
-  
+      </Page>
     </ChakraProvider>
   )
 

@@ -26,7 +26,6 @@ export default function Home() {
   return (
       <Grid templateColumns="repeat(2, 1fr)">
       
-      
         <GridItem colSpan={1}>
           {/* Main Section */}
           <Flex direction="column" h="60vh" w="100%" px="5rem">

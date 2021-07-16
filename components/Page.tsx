@@ -1,15 +1,18 @@
-import { Button, Box, ChakraProvider, useColorMode } from "@chakra-ui/react";
+import { ChakraProvider, Box, Button, useColorMode } from "@chakra-ui/react";
 
-export default function Page(props) {
+const Page = ({ children }) => {
     const { colorMode, toggleColorMode } = useColorMode();
 
-    return (    
-        <Box>
-        <Button onClick={toggleColorMode}>
-              {' '}
-              Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+    return (
+        <Box w="100%" h="100vh" bg={colorMode === 'light' ? 'white' : 'primary.dark'} >
+            <Box h="20vh" w="100%" top="0">
+            <Button onClick={toggleColorMode}>
+                Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
             </Button>
-            {props.children}
-        </Box>
-    )
+            </Box>
+            {children}
+        </Box >
+    );
 }
+
+export default Page;
