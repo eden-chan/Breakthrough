@@ -22,7 +22,11 @@ Mentees:
 
 ## About the Project
 
-...Specific details on the project. Add some pictures/videos too!
+The application can be accessed through: breakthrough.vercel.app
+![image](https://user-images.githubusercontent.com/60726802/126047332-912e0e61-80ef-422b-8669-31272e08f42f.png)
+
+Starting a session, will bring you to a menu where you can choose the difficulty. Which then will bring you towards the training screen
+![image](https://user-images.githubusercontent.com/60726802/126047368-d14544d9-d2fa-491c-81ad-bf1f83110b19.png)
 
 
 Installation
