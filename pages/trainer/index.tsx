@@ -18,6 +18,7 @@ import {
   ModalCloseButton,
   Text,
   useDisclosure,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import moment from 'moment';
 
@@ -36,10 +37,9 @@ const Trainer = () => {
   };
 
   const handleEndSession = () => {
-    const diff = moment(Date.now()).unix() - moment(startTime).unix();
+    const diff = Date.now() - startTime.getTime();
     const time = moment.utc(diff);
-    // console.log(time);
-    setTimeSpent(time.format('ss.SSS'));
+    setTimeSpent(time.format('m [minutes] s [seconds]'));
     setStartSession(false);
     onOpen();
   };
@@ -54,7 +54,7 @@ const Trainer = () => {
         {startSession ? (
           <Box key="wordPrompt_container">
             <Stack spacing={8}>
-              <WordPrompt />
+              <WordPrompt difficulty={difficulty} />
               <Button
                 colorScheme="purple"
                 onClick={handleEndSession}

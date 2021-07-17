@@ -23,21 +23,10 @@ import rapper from '../public/rapper.svg';
 
 export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode();
-
-  const bg = useColorModeValue('white', 'primary.dark');
+  
   return (
-    // Body
-    <Box bg={bg}>
       <Grid templateColumns="repeat(2, 1fr)">
-        <GridItem colSpan={2}>
-          {/* Nav Bar */}
-          <Box w="100%" h="20vh">
-            <Button onClick={toggleColorMode}>
-              {' '}
-              Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
-            </Button>
-          </Box>
-        </GridItem>
+      
         <GridItem colSpan={1}>
           {/* Main Section */}
           <Flex direction="column" h="60vh" w="100%" px="5rem">
@@ -56,20 +45,26 @@ export default function Home() {
             </Box>
             <Box>
               <Link href="/trainer" passHref>
-                <Box
-                  as="button"
+                <Button
                   borderRadius="md"
                   bg="#FEBE02"
                   color="#1A1A1A"
                   h="150%"
                   w="50%"
                 >
+<<<<<<< HEAD
                   <Center>
                     <Text fontSize="2xl">
                       Start a Session <ArrowForwardIcon />
                     </Text>{' '}
                   </Center>
                 </Box>
+=======
+                  <Text fontSize="6xl">
+                    Start A Session <ArrowForwardIcon />
+                  </Text>{' '}
+                </Button>
+>>>>>>> project-showcase
               </Link>
             </Box>
           </Flex>
@@ -82,6 +77,5 @@ export default function Home() {
           <Box h="20vh"></Box>
         </GridItem>
       </Grid>
-    </Box>
   );
 }
