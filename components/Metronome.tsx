@@ -91,6 +91,7 @@ export default function Metronome(props) {
 
   return (
     <Box>
+      <Box p="6px"></Box>
       <HStack
         width="calc(50% + 40px)"
         alignItems="center"

@@ -13,6 +13,7 @@ import {
   Flex,
   Spacer,
   useColorModeValue,
+  Center,
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
@@ -60,11 +61,14 @@ export default function Home() {
                   borderRadius="md"
                   bg="#FEBE02"
                   color="#1A1A1A"
-                  h="100%"
+                  h="150%"
+                  w="50%"
                 >
-                  <Text fontSize="6xl">
-                    Start A Session <ArrowForwardIcon />
-                  </Text>{' '}
+                  <Center>
+                    <Text fontSize="2xl">
+                      Start a Session <ArrowForwardIcon />
+                    </Text>{' '}
+                  </Center>
                 </Box>
               </Link>
             </Box>

@@ -66,10 +66,11 @@ const WordPrompt = () => {
             </Text>
           </Box>
         </Box>
-        <Box p="15px"></Box>
+        <Box p="10px"></Box>
         <Progress value={timer} w="100%" size="xs" colorScheme="yellow" />
 
         <Metronome tempo="160" />
+        <Box p="10px"></Box>
         <Button onClick={changeWordHandler}>Change Word</Button>
       </Flex>
     </Center>
