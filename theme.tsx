@@ -13,6 +13,13 @@ const config = {
     secondary: {
       main: "#FEBE02" // Gold
     }
+  },
+  styles: {
+    global: (props) => ({
+      "html, body": {
+        bg: props.colorMode === "dark"? "#1A1A1A": "white"
+      }
+    })
   }
 }
 
