@@ -15,18 +15,18 @@ const WordPrompt = (props) => {
   const [words, setWords] = useState([]);
   const [timer, setTimer] = useState(100);
   const [speed, setSpeed] = useState(() => {
-      switch(props.difficulty) {
-        case "Easy":
-          return 4;
-          break;
-        case "Medium":
-          return 8;
-          break;
-        case "Hard":
-          return 10
-          break;
-      }
-    });
+    switch (props.difficulty) {
+      case "Easy":
+        return 4;
+        break;
+      case "Medium":
+        return 8;
+        break;
+      case "Hard":
+        return 10
+        break;
+    }
+  });
   const wordBox = useColorModeValue('#5000CA', '#C4C4C4');
   const prompt = useColorModeValue('#ffffff', '#5000CA');
   useEffect(() => {
@@ -34,7 +34,7 @@ const WordPrompt = (props) => {
     fetchWords().then(() => {
       interval = window.setInterval(tickTimer, 500);
     })
-    
+
     // Clear service worker to prevent underflow
     return () => clearInterval(interval);
   }, []);
@@ -61,14 +61,14 @@ const WordPrompt = (props) => {
 
   const shuffle = (array) => {
     let curIdx = array.length, randomIdx;
-    while(curIdx !== 0) {
+    while (curIdx !== 0) {
       randomIdx = Math.floor(Math.random() * curIdx);
       curIdx--;
       [array[curIdx], array[randomIdx]] = [array[randomIdx], array[curIdx]];
     }
     return array;
   }
-  
+
   const fetchWords = async () => {
     const response = await fetch('/words.json');
     const fetchedWords = await response.json();
@@ -78,7 +78,7 @@ const WordPrompt = (props) => {
     return fetchedWords.length >= 0;
   };
 
-  
+
 
   return (
     <Center>
@@ -95,6 +95,7 @@ const WordPrompt = (props) => {
         <Progress value={timer} w="100%" size="xs" colorScheme="yellow" />
 
         <Metronome tempo="160" />
+        <Box p="5px"></Box>
         <Button onClick={changeWordHandler}>Change Word</Button>
       </Flex>
     </Center>
