@@ -24,7 +24,7 @@ export default function Home() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Grid templateColumns="repeat(2, 1fr)">
+    <Grid mt="10vh" templateColumns="repeat(2, 1fr)">
       <GridItem colSpan={1}>
         {/* Main Section */}
         <Flex direction="column" h="60vh" w="100%" px="5rem">
