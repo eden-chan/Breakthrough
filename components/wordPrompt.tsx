@@ -78,8 +78,6 @@ const WordPrompt = (props) => {
     return fetchedWords.length >= 0;
   };
 
-  
-
   return (
     <Center>
       <Flex direction="column" w="100%">
