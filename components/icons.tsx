@@ -1,18 +1,18 @@
 import { Icon } from '@chakra-ui/react';
 
-export const MenuIcon = (props) => (
-  <Icon viewBox="0 0 100 99" {...props}>
-    <path
-      d="M23.4233 75.1667H76.5765V66.4584H23.4233V75.1667ZM23.4233 53.3959H76.5765V44.6876H49.789H23.4233V53.3959ZM23.4233 22.9167V31.6251H76.5765V22.9167H23.4233Z"
-      fill="currentColor"
-    />
-    <path
-      d="M23.4233 75.1667H76.5765V66.4584H23.4233V75.1667ZM23.4233 53.3959H76.5765V44.6876H49.789H23.4233V53.3959ZM23.4233 22.9167V31.6251H76.5765V22.9167H23.4233Z"
-      fill="currentColor"
-      fillOpacity="0.2"
-    />
-  </Icon>
-);
+// export const MenuIcon = (props) => (
+//   <Icon viewBox="0 0 100 99" {...props}>
+//     <path
+//       d="M23.4233 75.1667H76.5765V66.4584H23.4233V75.1667ZM23.4233 53.3959H76.5765V44.6876H49.789H23.4233V53.3959ZM23.4233 22.9167V31.6251H76.5765V22.9167H23.4233Z"
+//       fill="currentColor"
+//     />
+//     <path
+//       d="M23.4233 75.1667H76.5765V66.4584H23.4233V75.1667ZM23.4233 53.3959H76.5765V44.6876H49.789H23.4233V53.3959ZM23.4233 22.9167V31.6251H76.5765V22.9167H23.4233Z"
+//       fill="currentColor"
+//       fillOpacity="0.2"
+//     />
+//   </Icon>
+// );
 
 export const PlayIcon = (props) => (
   <Icon viewBox="0 0 133 134" {...props}>

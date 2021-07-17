@@ -58,7 +58,6 @@ const Trainer = () => {
               <Button
                 colorScheme="purple"
                 onClick={handleEndSession}
-                fontSize="x-large"
               >
                 End session
               </Button>

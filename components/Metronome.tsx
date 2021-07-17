@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 
 import {
-  MenuIcon,
+  //MenuIcon,
   PlayIcon,
   PauseIcon,
   VolumeDownIcon,
@@ -92,19 +92,20 @@ export default function Metronome(props) {
   return (
     <Box>
       <HStack
-        width="calc(50% + 40px)"
+        pt="10px"
+        width="100%"
         alignItems="center"
         justifyItems="space-between"
         spacing="true"
       >
-        <IconButton
+        {/* <IconButton
           aria-label="Menu"
           w="50px"
           h="50px"
           objectFit="scale-down"
           isRound={true}
           icon={<MenuIcon w="100%" h="100%" />}
-        />
+        /> */}
         <IconButton
           onClick={startStop}
           aria-label="Start and Pause"
